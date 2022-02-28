@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Table(name = "ticket")
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "integer auto_increment",insertable = false)
     private long ticketId;
     private long showId;
     private int theatreId;
@@ -20,6 +21,12 @@ public class Ticket {
 
     public Ticket(long ticketId, long showId, int theatreId, int seatNo, double price) {
         this.ticketId = ticketId;
+        this.showId = showId;
+        this.theatreId = theatreId;
+        this.seatNo = seatNo;
+        this.price = price;
+    }
+    public Ticket(long showId, int theatreId, int seatNo, double price) {
         this.showId = showId;
         this.theatreId = theatreId;
         this.seatNo = seatNo;
